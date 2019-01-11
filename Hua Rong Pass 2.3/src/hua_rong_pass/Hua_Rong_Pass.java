@@ -32,6 +32,8 @@ public class Hua_Rong_Pass extends JFrame implements MouseListener, KeyListener,
 	Image img = null;
 	ArrayList<Move> moveHistory = new ArrayList<Move>();
 	String gameConceptStr1, gameConceptStr2;
+	int startX = -1, startY = -1;
+	int endX = -1, endY = -1;
 	int count = 0;
 	// =================================================
 
@@ -272,10 +274,10 @@ public class Hua_Rong_Pass extends JFrame implements MouseListener, KeyListener,
 	
 	/**************************************************
 	 * Set up for the game in easy difficulty
-	 * pre: Easy is select in the JComboBox difficulty
-	 * post: Chess are set up in easy difficulty
+	 * pre: Moderate is select in the JComboBox difficulty
+	 * post: Chess are set up in moderate difficulty
 	 **************************************************/
-	public void setUpEasy() {
+	public void setUpModerate() {
 		person[0].setBounds(185, 310, 250, 250);
 		person[1].setBounds(310, 560, 250, 125);
 		person[2].setBounds(60, 60, 125, 250); 
@@ -286,6 +288,25 @@ public class Hua_Rong_Pass extends JFrame implements MouseListener, KeyListener,
 		person[7].setBounds(185, 560, 125, 125);
 		person[8].setBounds(310, 60, 125, 125);
 		person[9].setBounds(310, 185, 125, 125);
+	}
+	
+	
+	/**************************************************
+	 * Set up for the game in hard difficulty
+	 * pre: Easy is select in the JComboBox difficulty
+	 * post: Chess are set up in hard difficulty
+	 **************************************************/
+	public void setUpEasy() {
+		person[0].setBounds(60, 435, 250, 250);
+		person[1].setBounds(310, 435, 250, 125);
+		person[2].setBounds(60, 60, 125, 250);
+		person[3].setBounds(185, 60, 125, 250);
+		person[4].setBounds(310, 60, 125, 250);
+		person[5].setBounds(435, 60, 125, 250);
+		person[6].setBounds(310, 310, 125, 125);
+		person[7].setBounds(435, 310, 125, 125);
+		person[8].setBounds(310, 560, 125, 125);
+		person[9].setBounds(435, 560, 125, 125);
 	}
 
 	public void keyTyped(KeyEvent e) {
@@ -307,10 +328,29 @@ public class Hua_Rong_Pass extends JFrame implements MouseListener, KeyListener,
 	}
 
 	public void mousePressed(MouseEvent e) {
+		Point p = e.getPoint();
+		startX = p.x;
+		startY = p.y;
 		
 	}
 
 	public void mouseReleased(MouseEvent e) {
+		Person man = (Person) e.getSource();
+		Point p = e.getPoint();
+		endX = p.x;
+		endY = p.y;
+
+		if (Math.abs(endX - startX) > Math.abs(endY - startY)) {
+			if (endX > startX)
+				go(man, right);
+			if (endX < startX)
+				go(man, left);
+		} else {
+			if (endY > startY)
+				go(man, below);
+			if (endY < startY)
+				go(man, above);
+		}
 	}
 
 	public void mouseEntered(MouseEvent e) {
