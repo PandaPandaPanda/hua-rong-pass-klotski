@@ -121,6 +121,7 @@ public class Hua_Rong_Pass extends JFrame implements MouseListener, KeyListener,
 		restart.setBounds(198, 715, 100, 35);
 		restart.setActionCommand("restart");
 		restart.addActionListener(this);
+		restart.setVisible(false);
 
 		panel.add(showTutorial);
 		showTutorial.setBounds(322, 715, 100, 35);
@@ -185,6 +186,7 @@ public class Hua_Rong_Pass extends JFrame implements MouseListener, KeyListener,
 	 * post: All the components are initialized
 	 ******************************************/
 	public void init() {
+		restart.setVisible(true);
 		counter = new JLabel("You have moved " + count + " steps");
 		counter.setFont(new Font("Serif", Font.BOLD, 18));
 		panel.add(counter);
