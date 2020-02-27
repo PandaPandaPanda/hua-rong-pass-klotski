@@ -11,7 +11,7 @@ Game Features:
 - Three different gaming difficulties
 - A tutorial that could be of help
 - Undo button
-- Step counts
+- Step counter
 
 <img src="Walkthrough/Cover.png">
 <img src="Walkthrough/Instructions.png">
